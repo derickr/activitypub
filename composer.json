@@ -1,0 +1,9 @@
+{
+	"name": "derickr/activitypub",
+	"type": "library",
+	"description": "A small and straightforward implementation of ActivityPub",
+	"license": "MIT",
+	"require": {
+		"php": ">=8.2"
+	}
+}
