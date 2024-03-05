@@ -3,6 +3,11 @@
 	"type": "library",
 	"description": "A small and straightforward implementation of ActivityPub",
 	"license": "MIT",
+	"autoload" : {
+		"psr-4": {
+			"DerickR\\ActivityPub\\" : "src"
+		}
+	},
 	"require": {
 		"php": ">=8.2"
 	}
