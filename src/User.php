@@ -128,10 +128,10 @@ class User
 		if (!isset($this->followers->$instance)) {
 			return;
 		}
-		$this->followers->$instance->accounts = array_filter(
+		$this->followers->$instance->accounts = array_values(array_filter(
 			$this->followers->$instance->accounts,
 			function($v) use ($account) { return $v != $account; }
-		);
+		));
 	}
 
 	public function sign( string $stringToSign ) : string
