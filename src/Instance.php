@@ -421,7 +421,11 @@ class Instance
 	{
 		/* Store post for posterity, which also makes it available in the outbox */
 		$outboxItem = [ "@context" => "https://www.w3.org/ns/activitystreams" ];
-		foreach ((array) $post->getEmbeddedObject()->toJsonData() as $key => $value) {
+
+		$embeddedObject = $post->getEmbeddedObject();
+		$jsonData = $embeddedObject !== NULL ? (array) $embeddedObject->toJsonData() : [];
+
+		foreach ($jsonData as $key => $value) {
 			$outboxItem[$key] = $value;
 		}
 
