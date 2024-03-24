@@ -75,6 +75,9 @@ class Instance
 		$user = $this->provider->getUser( $account );
 		$this->provider->saveUser( $user );
 
+		$iconImage = str_starts_with($user->iconImage, "http") ? $user->iconImage : "https://{$this->hostname}{$user->iconImage}";
+		$headerImage = str_starts_with($user->headerImage, "http") ? $user->headerImage : "https://{$this->hostname}{$user->headerImage}";
+
 		$data = [
 			"@context" => [
 				"https://www.w3.org/ns/activitystreams",
@@ -97,12 +100,12 @@ class Instance
 			"icon" => [
 				"type" => "Image",
 				"mediaType" => "image/jpeg",
-				"url" => "https://{$this->hostname}{$user->iconImage}",
+				"url" => $iconImage,
 			],
 			"image" => [
 				"type" => "Image",
 				"mediaType" => "image/jpeg",
-				"url" => "https://{$this->hostname}{$user->headerImage}",
+				"url" => $headerImage,
 			],
 			"publicKey" => [
 				"id" => "https://{$this->hostname}/@{$user->username}#main-key",
