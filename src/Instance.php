@@ -398,7 +398,7 @@ class Instance
 			return;
 		}
 
-		$f = @fopen("/tmp/activity-pub-debug-" . getmyuid() . ".json", "a");
+		$f = fopen("/tmp/activity-pub-debug-" . posix_geteuid() . ".json", "a");
 
 		if ($f) {
 			fwrite($f, "\n=====\n" . $message . "\n=====\n");
