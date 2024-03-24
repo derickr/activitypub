@@ -252,6 +252,8 @@ class Instance
 
 		$this->setJsonContentType();
 		echo $post;
+
+		die();
 	}
 
 	private function processFollowMessage( $account, $payload )
