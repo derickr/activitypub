@@ -72,7 +72,7 @@ class User
 		return $new;
 	}
 
-	public function asData() : array
+	public function getInfo() : array
 	{
 		return [
 			'username' => $this->username,
@@ -81,10 +81,16 @@ class User
 			'joinDate' => $this->joinDate,
 			'iconImage' => $this->iconImage,
 			'headerImage' => $this->headerImage,
-			'followers' => $this->followers,
-			'following' => $this->following,
 			'privateKey' => $this->privateKey,
 			'publicKey' => $this->publicKey,
+		];
+	}
+
+	public function getRelations() : array
+	{
+		return [
+			'followers' => $this->followers,
+			'following' => $this->following,
 		];
 	}
 

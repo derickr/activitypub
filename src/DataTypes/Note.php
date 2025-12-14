@@ -3,6 +3,7 @@ namespace DerickR\ActivityPub\DataTypes;
 
 class Note extends DataType
 {
+	protected string $id;
 	private array $contexts;
 	private string $type;
 	private array $hashTags = [];
@@ -17,16 +18,23 @@ class Note extends DataType
 
 	const ActivityPubType = 'Note';
 
-	public function __construct(string $actor, string $content)
+	public function resetId() : string
 	{
 		$r = new \Random\Randomizer;
-		$this->id = $actor . '/posts/' . bin2hex($r->getBytes(16)) . '.json';
 
+		$this->id = $this->attributedTo . '/posts/' . bin2hex($r->getBytes(16));
+
+		return $this->id;
+	}
+
+	public function __construct(string $actor, string $content)
+	{
 		$this->type = self::ActivityPubType;
 		$this->contexts = [ "https://www.w3.org/ns/activitystreams" ];
 		$this->addContext("HashTag", "https://www.w3.org/ns/activitystreams#Hashtag");
 		$this->publishedAt = new \DateTimeImmutable();
 		$this->attributedTo = $actor;
+		$this->resetId();
 		$this->content = $content;
 		$this->to = [ "https://www.w3.org/ns/activitystreams#Public" ];
 		$this->cc = [];
